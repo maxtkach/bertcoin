@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$BERT - The Only Cryptocurrency With World Domination Plans</title>
+    <style>
+        @font-face {
+            font-family: 'Dilbert';
+            /* произвольное имя шрифта */
+            src: url('/DILBERTFONT2.ttf') format('truetype');
+            /* путь к файлу */
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Dilbert', sans-serif;
+            background: #ffffff;
+            color: #000;
+            overflow-x: hidden;
+            cursor: url("mouse.png") 0 0, default;
+        }
+
+        .comic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Comic Panel Styles */
+        .panel {
+            background: #ffffff;
+            border: 6px solid #000000;
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            margin: 30px 0;
+            position: relative;
+            color: #000;
+        }
+
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: -10px;
+            bottom: -10px;
+            border: 3px solid #87ceeb;
+            pointer-events: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Dilbert', sans-serif;
+            font-size: 6rem;
+            color: #000000;
+            text-shadow:
+                4px 4px 0 #87ceeb,
+                8px 8px 0 rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+            letter-spacing: 0.1em;
+            -webkit-text-stroke: 2px #000000;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .subtitle {
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            color: #000000;
+            text-shadow: 3px 3px 0 #87ceeb;
+            margin-bottom: 30px;
+        }
+
+        .speech-bubble {
+            position: relative;
+            background: #ffffff;
+            border: 5px solid #000000;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 700px;
+            color: #000;
+            font-size: 1.3rem;
+            font-weight: bold;
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-top: 30px solid #ffffff;
+            filter: drop-shadow(3px 3px 0 #000000);
+        }
+
+        /* Story Section */
+        .story-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .story-box {
+            background: #ffffff;
+            border: 5px solid #000000;
+            padding: 30px;
+            position: relative;
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .story-box h3 {
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            color: #000000;
+            text-shadow: 2px 2px 0 #87ceeb;
+            margin-bottom: 15px;
+        }
+
+        .story-box p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #000;
+        }
+
+        /* Roadmap Section */
+        .roadmap {
+            position: relative;
+            padding: 40px;
+        }
+
+        .roadmap-item {
+            background: #ffffff;
+            border: 5px solid #000000;
+            padding: 25px;
+            margin: 20px 0;
+            position: relative;
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .roadmap-item::before {
+            content: '→';
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: #000000;
+            text-shadow: 2px 2px 0 #87ceeb;
+        }
+
+        .roadmap-item h3 {
+            font-family: 'Bangers', cursive;
+            font-size: 1.8rem;
+            color: #000000;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 0 #87ceeb;
+        }
+
+        /* CTA Buttons */
+        .cta-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            font-family: 'Bangers', cursive;
+            font-size: 2.2rem;
+            padding: 25px 50px;
+            background: #ffffff;
+            color: #000;
+            border: 6px solid #000000;
+            text-decoration: none;
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:active {
+            transform: translate(8px, 8px);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button.twitter {
+            background: #87ceeb;
+            color: #000;
+            border-color: #000000;
+        }
+
+        .cta-button.luminex {
+            background: #000000;
+            color: #ffffff;
+            border-color: #87ceeb;
+            box-shadow: 8px 8px 0 #87ceeb;
+        }
+
+        .cta-button.luminex:hover {
+            box-shadow: 4px 4px 0 #87ceeb;
+        }
+
+        .cta-button.forum {
+            background: #f5f5f5;
+            color: #000;
+            border-color: #000000;
+        }
+
+        /* Gallery Styles */
+        .comic-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .comic-placeholder {
+            background: #f5f5f5;
+            border: 5px solid #000000;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comic-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px dashed #87ceeb;
+        }
+
+        .placeholder-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .placeholder-content p {
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .placeholder-content span {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .meme-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .meme-placeholder {
+            background: #f5f5f5;
+            border: 5px solid #000000;
+            aspect-ratio: 1 / 1;
+            /* квадратный блок */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .placeholder-content img {
+            width: 100%;
+            /* растягиваем по ширине блока */
+            height: auto;
+            /* сохраняем пропорции */
+            object-fit: contain;
+            /* картинка полностью помещается внутри блока */
+            display: block;
+        }
+
+
+        .meme-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px dashed #87ceeb;
+        }
+
+        /* Lambo Section */
+        .lambo-section {
+            margin: 60px 0;
+            padding: 60px 20px;
+            background: #000000;
+            border: 6px solid #000000;
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lambo-content {
+            text-align: center;
+            z-index: 2;
+            margin-bottom: 30px;
+        }
+
+        .lambo-placeholder {
+            width: 100%;
+            max-width: 1000px;
+            background: #f5f5f5;
+            border: 5px solid #87ceeb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 30px rgba(135, 206, 235, 0.3);
+        }
+
+        .lambo-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 3px dashed #87ceeb;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 5px solid #000000;
+            box-shadow: 0 -5px 0 rgba(0, 0, 0, 0.1);
+            margin-top: 60px;
+            background: #f5f5f5;
+        }
+
+        .warning {
+            background: #ffffff;
+            color: #000;
+            padding: 25px;
+            border: 5px solid #000000;
+            margin: 20px 0;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+
+            .cta-button {
+                font-size: 1.7rem;
+                padding: 20px 35px;
+            }
+
+            .roadmap {
+                padding: 20px 10px;
+            }
+
+            .roadmap-item::before {
+                left: -30px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Glitch Effect */
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                transform: translate(-2px, -2px);
+            }
+
+            60% {
+                transform: translate(2px, 2px);
+            }
+
+            80% {
+                transform: translate(2px, -2px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        .glitch {
+            animation: glitch 0.3s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="comic-bg"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="hero-title">$BERTCOIN</h1>
+            <div class="subtitle">THE ONLY CRYPTOCURRENCY WITH WORLD DOMINATION PLANS</div>
+            <div class="speech-bubble">
+                "I've conquered the world 47 times. Now it's time to conquer crypto.
+                Why? Because enslaving humanity is expensive and I need better funding."
+                <br><br>
+                <em>- Dogbert, Evil Genius & CEO of Bertcoin</em>
+            </div>
+        </section>
+
+        <!-- CTA Section (Moved to top) -->
+        <section class="cta-section">
+            <h2
+                style="font-family: 'Bangers', cursive; font-size: 3rem; color: #000000; text-shadow: 2px 2px 0 #87ceeb; margin-bottom: 20px;">
+                JOIN THE DARK SIDE
+            </h2>
+            <p style="font-size: 1.3rem; margin-bottom: 30px; color: #000000;">
+                Become a minion today. It's your destiny. Probably.
+            </p>
+            <div class="cta-grid">
+                <a href="https://twitter.com" target="_blank" class="cta-button twitter">
+                    FOLLOW ON X
+                </a>
+                <a href="https://luminex.io" target="_blank" class="cta-button luminex">
+                    BUY ON LUMINEX
+                </a>
+                <a href="https://bitcointalk.org/index.php?topic=260841.0" target="_blank" class="cta-button forum">
+                    BITCOINTALK
+                </a>
+            </div>
+        </section>
+
+        <!-- Story Panel -->
+        <div class="panel">
+            <h2
+                style="font-family: 'Bangers', cursive; font-size: 3rem; text-align: center; color: #000000; text-shadow: 2px 2px 0 #87ceeb; margin-bottom: 30px;">
+                THE ORIGIN STORY</h2>
+            <div class="story-panel">
+                <div class="story-box">
+                    <h3>Phase 1: The Discovery</h3>
+                    <p>While plotting to take over the world (again), Dogbert discovered cryptocurrency. "These humans
+                        will literally buy anything with a white paper," he observed cynically.</p>
+                </div>
+                <div class="story-box">
+                    <h3>Phase 2: The Plan</h3>
+                    <p>As a megalomaniacal consultant who has scammed countless corporations, Dogbert realized crypto
+                        was the perfect vehicle for world domination. No need for hypnosis this time!</p>
+                </div>
+                <div class="story-box">
+                    <h3>Phase 3: Bertcoin</h3>
+                    <p>Bertcoin was born. Not just a meme coin - it's a decentralized dictatorship. Every holder becomes
+                        a minion in Dogbert's latest scheme to enslave humanity.</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Meme Gallery Section -->
+        <div class="panel">
+            <h2
+                style="font-family: 'Bangers', cursive; font-size: 3rem; text-align: center; color: #000000; text-shadow: 2px 2px 0 #87ceeb; margin-bottom: 30px;">
+                BERTCOIN MEMES</h2>
+            <div class="meme-gallery">
+                <div class="meme-placeholder">
+                    <div class="placeholder-content">
+                        <img src="meme1.jpg" alt="MEME #1">
+                    </div>
+                </div>
+                <div class="meme-placeholder">
+                    <div class="placeholder-content">
+                        <img src="meme2.jpg" alt="MEME #2">
+                    </div>
+                </div>
+                <div class="meme-placeholder">
+                    <div class="placeholder-content">
+                        <img src="meme3.png" alt="MEME #3">
+                    </div>
+                </div>
+                <div class="meme-placeholder">
+                    <div class="placeholder-content">
+                        <img src="meme4.png" alt="MEME #4">
+                    </div>
+                </div>
+                <div class="meme-placeholder">
+                    <div class="placeholder-content">
+                        <img src="meme5.png" alt="MEME #5">
+                    </div>
+                </div>
+                <div class="meme-placeholder">
+                    <div class="placeholder-content">
+                        <img src="meme7.jpg" alt="MEME #7">
+                    </div>
+                </div>
+                <div class="meme-placeholder">
+                    <div class="placeholder-content">
+                        <img src="meme8.png" alt="MEME #8">
+                    </div>
+                </div>
+
+                <div class="meme-placeholder">
+                    <div class="placeholder-content">
+                        <img src="meme9.png" alt="MEME #9">
+                    </div>
+                </div>
+
+                <div class="meme-placeholder">
+                    <div class="placeholder-content">
+                        <img src="meme10.jpg" alt="MEME #10">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Roadmap -->
+        <div class="panel">
+            <h2
+                style="font-family: 'Bangers', cursive; font-size: 3rem; text-align: center; color: #000000; text-shadow: 2px 2px 0 #87ceeb; margin-bottom: 40px;">
+                ROADMAP TO DOMINATION</h2>
+            <div class="roadmap">
+                <div class="roadmap-item">
+                    <h3>Phase 1: Launch</h3>
+                    <p>Deploy $BERT on Luminex. Why Luminex? Because even I can figure out their UI, and I'm a dog.</p>
+                </div>
+                <div class="roadmap-item">
+                    <h3>Phase 2: Community</h3>
+                    <p>Recruit human minions (you) through social media. Promise them riches. Deliver memes instead.</p>
+                </div>
+                <div class="roadmap-item">
+                    <h3>Phase 3: Exchange Listings</h3>
+                    <p>Get listed on major exchanges. Use my consultant skills to convince them this is "the future of
+                        finance."</p>
+                </div>
+                <div class="roadmap-item">
+                    <h3>Phase 4: World Domination</h3>
+                    <p>Once market cap hits $1B, declare myself Supreme Ruler. Again. This time with blockchain proof.
+                    </p>
+                </div>
+                <div class="roadmap-item">
+                    <h3>Phase 5: Retirement</h3>
+                    <p>Get bored of ruling. Give it all back. Take a nap on a soft pillow. The circle of life.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Bertcoin -->
+        <div class="panel">
+            <h2
+                style="font-family: 'Bangers', cursive; font-size: 3rem; text-align: center; color: #000000; text-shadow: 2px 2px 0 #87ceeb; margin-bottom: 30px;">
+                WHY $BERT?</h2>
+            <div class="story-panel">
+                <div class="story-box">
+                    <h3>✓ Evil Genius Leadership</h3>
+                    <p>Led by a dog who has conquered the world multiple times. Your other coins are run by anonymous
+                        devs who can't even conquer their mom's basement.</p>
+                </div>
+                <div class="story-box">
+                    <h3>✓ Proven Track Record</h3>
+                    <p>Dogbert has been a billionaire, Supreme Court nominee, FBI leader, and cult leader. He knows how
+                        to pump... I mean, build value.</p>
+                </div>
+                <div class="story-box">
+                    <h3>✓ Community Driven*</h3>
+                    <p>*Community driven in the sense that you drive the value up while Dogbert drives you around like
+                        the minions you are.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Warning -->
+        <div class="warning">
+            ⚠️ WARNING: This is a meme coin created by an evil megalomaniacal dog. Invest at your own risk.
+            Dogbert is not responsible for your financial decisions, world domination plans, or addiction to waffles. ⚠️
+        </div>
+
+        <!-- Wen Lambo Section -->
+        <div class="lambo-section">
+            <div class="lambo-content">
+                <h2
+                    style="font-family: 'Bangers', cursive; font-size: 5rem; color: #ffffff; text-shadow: 3px 3px 0 #87ceeb; margin-bottom: 20px; z-index: 2; position: relative;">
+                    WEN LAMBO?
+                </h2>
+                <p
+                    style="font-size: 1.8rem; font-weight: bold; color: #ffffff; z-index: 2; position: relative; text-shadow: 2px 2px 0 #87ceeb;">
+                    Soon™ (After I conquer the world... again)
+                </p>
+            </div>
+            <div class="lambo-placeholder">
+                <div class="placeholder-content">
+                    <img src="/lambo.jpg" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p style="font-size: 1.2rem; margin-bottom: 10px; color: #000000;">
+                "I could have created Bitcoin, but I was too busy plotting world domination."
+            </p>
+            <p style="font-size: 1rem; color: #000000;">
+                © 2025 Bertcoin | Powered by Evil Genius™ | Not Financial Advice | Definitely Not a Cult
+            </p>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 20px;">
+                Dogbert is a character from Dilbert comic strip by Scott Adams. This is a parody project for
+                entertainment purposes.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Parallax effect
+        window.addEventListener('scroll', function () {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = 'translateY(' + scrolled * 0.3 + 'px)';
+            }
+        });
+
+        // Random glitch effect on title
+        setInterval(() => {
+            const title = document.querySelector('.hero-title');
+            if (Math.random() > 0.95) {
+                title.classList.add('glitch');
+                setTimeout(() => title.classList.remove('glitch'), 300);
+            }
+        }, 2000);
+
+        // Intersection Observer for panels
+        const panels = document.querySelectorAll('.panel');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        panels.forEach(panel => {
+            panel.style.opacity = '0';
+            panel.style.transform = 'translateY(50px)';
+            panel.style.transition = 'all 0.8s ease';
+            observer.observe(panel);
+        });
+
+        const titles = [
+            "$BERT - The Only Cryptocurrency With World Domination Plans",
+            "Definitely Not a Cult",
+            "Powered by Evil Genius™",
+            "bert.",
+            "SATOSHI NAKAMOTO DOGSELF"
+        ];
+
+        let index = 0;
+
+        // Функция смены заголовка
+        function changeTitle() {
+            document.title = titles[index];
+            index = (index + 1) % titles.length; // цикл по массиву
+        }
+
+        // Меняем каждые 3 секунды (3000 мс)
+        setInterval(changeTitle, 2000);
+    </script>
+</body>
+
+</html>
